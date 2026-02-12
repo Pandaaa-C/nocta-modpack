@@ -1,0 +1,4 @@
+rootProject.name = "nocta-modpack"
+
+include(":mods:nocta-core")
+include(":mods:nocta-world")
