@@ -21,6 +21,10 @@ public final class NoctaOresItems {
         );
     }
 
+    public static final DeferredHolder<Item, Item> NOCTITE = ITEMS.register("noctite", () ->
+            new Item(new Item.Properties().setId(key("noctite")))
+    );
+
     public static final DeferredHolder<Item, Item> NOCTITE_ORE = ITEMS.register("noctite_ore", () ->
             new BlockItem(
                     NoctaOresBlocks.NOCTITE_ORE.get(),
