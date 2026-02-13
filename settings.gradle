@@ -1,4 +1,14 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        maven { url = "https://maven.neoforged.net/releases" }
+        maven { url = "https://maven.neoforged.net/snapshots" }
+    }
+}
+
 rootProject.name = "nocta-modpack"
 
 include(":mods:nocta-core")
 include(":mods:nocta-world")
+include(":mods:nocta-ores")
+include("dev-runner")

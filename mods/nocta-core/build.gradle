@@ -5,6 +5,7 @@ plugins {
     id "idea"
 }
 
+
 group = mod_group_id
 version = mod_version
 
@@ -46,6 +47,14 @@ sourceSets {
             srcDir(generateModMetadata.map { it.destinationDir })
         }
     }
+}
+
+tasks.named("processResources") {
+    dependsOn(generateModMetadata)
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = "UTF-8"
 }
 
 neoForge {
@@ -97,32 +106,4 @@ neoForge {
     }
 
     ideSyncTask(generateModMetadata)
-}
-
-configurations {
-    runtimeClasspath.extendsFrom(localRuntime)
-}
-
-publishing {
-    publications {
-        create("mavenJava", MavenPublication) {
-            from components.java
-        }
-    }
-    repositories {
-        maven {
-            url = uri(layout.projectDirectory.dir("repo"))
-        }
-    }
-}
-
-tasks.withType(JavaCompile).configureEach {
-    options.encoding = "UTF-8"
-}
-
-idea {
-    module {
-        downloadSources = true
-        downloadJavadoc = true
-    }
 }

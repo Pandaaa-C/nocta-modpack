@@ -1,8 +1,0 @@
-{
-  "type": "neoforge:add_features",
-  "biomes": "#minecraft:is_overworld",
-  "features": [
-    "nocta_world:debug_block"
-  ],
-  "step": "top_layer_modification"
-}
