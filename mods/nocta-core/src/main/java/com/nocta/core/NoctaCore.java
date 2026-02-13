@@ -14,16 +14,10 @@ public final class NoctaCore {
 
     private static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
 
-    public static final DeferredItem<Item> TEST_ITEM = ITEMS.registerSimpleItem("test_item");
-
     public NoctaCore(IEventBus modBus) {
         ITEMS.register(modBus);
         modBus.addListener(NoctaCore::addToTabs);
     }
 
-    private static void addToTabs(BuildCreativeModeTabContentsEvent event) {
-        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
-            event.accept(TEST_ITEM.get());
-        }
-    }
+    private static void addToTabs(BuildCreativeModeTabContentsEvent event) {}
 }
