@@ -1,10 +1,19 @@
 package com.nocta.core;
 
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 
-@Mod(value = NoctaCore.MOD_ID, dist = net.neoforged.api.distmarker.Dist.CLIENT)
+@Mod(value = NoctaCore.MOD_ID, dist = Dist.CLIENT)
 public final class NoctaCoreClient {
-    public NoctaCoreClient(IEventBus modBus) {
+    public NoctaCoreClient(IEventBus modEventBus, ModContainer modContainer) {
+        NoctaCore.LOGGER.info("Initializing Nocta Core (client)");
+
+        net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(this::onClientLogout);
+    }
+
+    private void onClientLogout(net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent.LoggingOut event) {
+        com.nocta.core.client.ClientPhaseCache.clear();
     }
 }

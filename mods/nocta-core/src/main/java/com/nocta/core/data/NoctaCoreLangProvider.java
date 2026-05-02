@@ -39,5 +39,9 @@ public final class NoctaCoreLangProvider extends LanguageProvider {
 
         // Placement modifier type (optional but tidy)
         add("placement_modifier_type.nocta_core.phase_gated", "Phase Gated");
+
+        add(NoctaItems.PHASE_GUIDEBOOK.get(), "Phase Guidebook");
+        add("screen.nocta_core.phase_guidebook", "Phase Guidebook");
+        add("gui.nocta_core.guidebook.current", "Current era: %s");
     }
 }

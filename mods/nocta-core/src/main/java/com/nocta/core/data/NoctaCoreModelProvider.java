@@ -17,5 +17,7 @@ public final class NoctaCoreModelProvider extends ModelProvider {
     @Override
     protected void registerModels(BlockModelGenerators blockModels, ItemModelGenerators itemModels) {
         itemModels.generateFlatItem(NoctaItems.TEST_ITEM.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(NoctaItems.PHASE_GUIDEBOOK.get(), ModelTemplates.FLAT_ITEM);
+
     }
 }

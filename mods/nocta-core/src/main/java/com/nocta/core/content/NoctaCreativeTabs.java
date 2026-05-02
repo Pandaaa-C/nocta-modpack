@@ -19,6 +19,7 @@ public class NoctaCreativeTabs {
                     .icon(() -> new ItemStack(NoctaItems.TEST_ITEM.get()))
                     .displayItems((params, output) -> {
                         output.accept(NoctaItems.TEST_ITEM.get());
+                        output.accept(NoctaItems.PHASE_GUIDEBOOK.get());
                     })
                     .build());
 

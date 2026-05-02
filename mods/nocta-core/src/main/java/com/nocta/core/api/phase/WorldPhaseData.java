@@ -36,22 +36,15 @@ public class WorldPhaseData extends SavedData {
         return phase;
     }
 
-    /** Reads the world phase. Always returns a non-null phase; defaults to STARTING_PHASE. */
     public static Phase get(ServerLevel level) {
         return getData(level).phase;
     }
 
-    /** Reads the underlying SavedData, creating it with default phase if absent. */
     public static WorldPhaseData getData(ServerLevel level) {
-        // Always anchor world phase to the overworld so all dimensions agree.
         ServerLevel overworld = level.getServer().overworld();
         return overworld.getDataStorage().computeIfAbsent(TYPE);
     }
 
-    /**
-     * Advances the world to the given phase if it's higher than the current phase.
-     * Returns true if a change occurred.
-     */
     public static boolean advanceTo(ServerLevel level, Phase target) {
         WorldPhaseData data = getData(level);
         if (target.isAtLeast(data.phase) && target != data.phase) {
@@ -59,19 +52,26 @@ public class WorldPhaseData extends SavedData {
             data.phase = target;
             data.setDirty();
             NoctaCore.LOGGER.info("World phase advanced: {} -> {}", old, target);
-            // TODO: fire a PhaseAdvancedEvent so other systems can react.
+            broadcastToAllPlayers(level, target);
             return true;
         }
         return false;
     }
 
-    /** Force-set the phase, even backwards. For commands and testing only. */
     public static void forceSet(ServerLevel level, Phase target) {
         WorldPhaseData data = getData(level);
         if (data.phase != target) {
             data.phase = target;
             data.setDirty();
             NoctaCore.LOGGER.info("World phase force-set to: {}", target);
+            broadcastToAllPlayers(level, target);
+        }
+    }
+
+    private static void broadcastToAllPlayers(ServerLevel level, Phase phase) {
+        var payload = new com.nocta.core.network.WorldPhasePayload(phase);
+        for (var player : level.getServer().getPlayerList().getPlayers()) {
+            net.neoforged.neoforge.network.PacketDistributor.sendToPlayer(player, payload);
         }
     }
 }

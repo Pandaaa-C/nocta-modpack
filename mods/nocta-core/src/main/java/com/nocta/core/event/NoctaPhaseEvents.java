@@ -31,6 +31,10 @@ public final class NoctaPhaseEvents {
         if (!(player.level() instanceof ServerLevel server)) return;
 
         Phase current = WorldPhaseData.get(server);
+
+        net.neoforged.neoforge.network.PacketDistributor.sendToPlayer(player,
+                new com.nocta.core.network.WorldPhasePayload(current));
+
         for (Phase phase : Phase.values()) {
             if (current.isAtLeast(phase)) {
                 NoctaTriggers.PHASE_REACHED.get().trigger(player, phase);
