@@ -1,6 +1,7 @@
 package com.nocta.core;
 
 import com.nocta.core.api.phase.NoctaPlacementModifiers;
+import com.nocta.core.api.phase.NoctaTriggers;
 import com.nocta.core.command.NoctaCommands;
 import com.nocta.core.content.NoctaRegistries;
 import net.neoforged.bus.api.IEventBus;
@@ -30,6 +31,7 @@ public class NoctaCore {
         NoctaRegistries.CORE.register(modEventBus);
         NoctaCreativeTabs.register(modEventBus);
         NoctaPlacementModifiers.register(modEventBus);
+        NoctaTriggers.register(modEventBus);
 
         NoctaCommands.register();
 

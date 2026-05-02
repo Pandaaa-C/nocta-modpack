@@ -21,5 +21,6 @@ public final class NoctaCoreDataGen {
 
         event.addProvider(new NoctaCoreModelProvider(output));
         event.addProvider(new NoctaCoreLangProvider(output));
+        event.addProvider(NoctaCoreAdvancementProvider.create(output, lookupProvider));
     }
 }
