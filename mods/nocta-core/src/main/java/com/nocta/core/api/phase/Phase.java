@@ -58,4 +58,30 @@ public enum Phase implements StringRepresentable {
         }
         return null;
     }
+
+    public net.minecraft.world.item.Item iconItem() {
+        return switch (this) {
+            case STONE -> net.minecraft.world.item.Items.COBBLESTONE;
+            case BRONZE -> net.minecraft.world.item.Items.RAW_COPPER;
+            case IRON -> net.minecraft.world.item.Items.RAW_IRON;
+            case AETHER -> net.minecraft.world.item.Items.AMETHYST_SHARD;
+            case MECHANISM -> net.minecraft.world.item.Items.COPPER_INGOT;
+            case RESONANCE -> net.minecraft.world.item.Items.AMETHYST_BLOCK;
+            case VOIDFORGED -> net.minecraft.world.item.Items.NETHERITE_INGOT;
+            case ETERNAL -> net.minecraft.world.item.Items.NETHER_STAR;
+        };
+    }
+
+    public int themeColor() {
+        return switch (this) {
+            case STONE -> 0xFF888888;
+            case BRONZE -> 0xFFCD7F32;
+            case IRON -> 0xFFD0D0D0;
+            case AETHER -> 0xFFC080FF;
+            case MECHANISM -> 0xFFFFA040;
+            case RESONANCE -> 0xFFFF80C0;
+            case VOIDFORGED -> 0xFF402080;
+            case ETERNAL -> 0xFFFFD700;
+        };
+    }
 }

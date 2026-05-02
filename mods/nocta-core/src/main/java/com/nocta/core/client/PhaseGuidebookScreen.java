@@ -34,42 +34,53 @@ public class PhaseGuidebookScreen extends Screen {
 
         graphics.fill(this.width / 2 - 150, 45, this.width / 2 + 150, 46, 0xFF606060);
 
-        int rowHeight = 32;
-        int listTop = 55;
         int listLeft = this.width / 2 - 150;
         int listRight = this.width / 2 + 150;
+        int listWidth = listRight - listLeft;
 
-        for (int i = 0; i < Phase.values().length; i++) {
-            Phase phase = Phase.values()[i];
-            int rowTop = listTop + i * rowHeight;
+        int y = 55;
+        for (Phase phase : Phase.values()) {
             boolean unlocked = current.isAtLeast(phase);
             boolean isCurrent = phase == current;
-
-            renderPhaseRow(graphics, phase, listLeft, rowTop, listRight - listLeft, rowHeight, unlocked, isCurrent);
+            int rowHeight = renderPhaseRow(graphics, phase, listLeft, y, listWidth, unlocked, isCurrent);
+            y += rowHeight + 2;
         }
     }
 
-    private void renderPhaseRow(GuiGraphics graphics, Phase phase, int x, int y, int width, int height, boolean unlocked, boolean isCurrent) {
-        int bgColor = isCurrent ? 0x40FFD040 : (unlocked ? 0x20FFFFFF : 0x10000000);
-        graphics.fill(x, y, x + width, y + height - 2, bgColor);
+    private int renderPhaseRow(GuiGraphics graphics, Phase phase, int x, int y, int width,
+                               boolean unlocked, boolean isCurrent) {
+        int themeColor = phase.themeColor();
+        int textIndent = 30;
+        int rightPadding = 8;
+        int descWidth = width - textIndent - rightPadding;
+
+        var descLines = this.font.split(phase.description(), descWidth);
+        int height = 12 + descLines.size() * 10 + 6;
+
+        int bgAlpha = isCurrent ? 0x60 : (unlocked ? 0x30 : 0x18);
+        int rowBg = (bgAlpha << 24) | (themeColor & 0x00FFFFFF);
+        graphics.fill(x, y, x + width, y + height, rowBg);
 
         if (isCurrent) {
-            int borderColor = 0xFFFFD040;
-            graphics.fill(x, y, x + width, y + 1, borderColor);
-            graphics.fill(x, y + height - 3, x + width, y + height - 2, borderColor);
-            graphics.fill(x, y, x + 1, y + height - 2, borderColor);
-            graphics.fill(x + width - 1, y, x + width, y + height - 2, borderColor);
+            graphics.fill(x, y, x + width, y + 1, themeColor);
+            graphics.fill(x, y + height - 1, x + width, y + height, themeColor);
+            graphics.fill(x, y, x + 1, y + height, themeColor);
+            graphics.fill(x + width - 1, y, x + width, y + height, themeColor);
         }
 
-        String indicator = unlocked ? "✓" : "✗";
-        int indicatorColor = unlocked ? 0xFF60FF60 : 0xFFFF6060;
-        graphics.drawString(this.font, indicator, x + 6, y + 6, indicatorColor);
+        graphics.renderItem(phase.iconItem().getDefaultInstance(), x + 6, y + 4);
 
         int nameColor = unlocked ? 0xFFFFFFFF : 0xFF808080;
-        graphics.drawString(this.font, phase.displayName(), x + 22, y + 6, nameColor);
+        graphics.drawString(this.font, phase.displayName(), x + textIndent, y + 6, nameColor);
 
         int descColor = unlocked ? 0xFFC0C0C0 : 0xFF606060;
-        graphics.drawString(this.font, phase.description(), x + 22, y + 18, descColor);
+        int descY = y + 18;
+        for (var line : descLines) {
+            graphics.drawString(this.font, line, x + textIndent, descY, descColor);
+            descY += 10;
+        }
+
+        return height;
     }
 
     @Override

@@ -35,7 +35,7 @@ public final class NoctaCoreAdvancementProvider {
 
                 Advancement.Builder builder = Advancement.Builder.advancement()
                         .display(
-                                Items.STONE.getDefaultInstance(),
+                                phase.iconItem().getDefaultInstance(),
                                 phase.displayName(),
                                 phase.description(),
                                 isRoot ? BACKGROUND : null,        // ← background only on root
