@@ -1,0 +1,17 @@
+{
+  "feature": "nocta_ores:bronze_ore",
+  "placement": [
+    { "type": "nocta_core:phase_gated", "required_phase": "bronze" },
+    { "type": "minecraft:count", "count": 8 },
+    { "type": "minecraft:in_square" },
+    {
+      "type": "minecraft:height_range",
+      "height": {
+        "type": "minecraft:trapezoid",
+        "min_inclusive": { "absolute": -32 },
+        "max_inclusive": { "absolute": 64 }
+      }
+    },
+    { "type": "minecraft:biome" }
+  ]
+}

@@ -5,7 +5,6 @@ plugins {
     id "idea"
 }
 
-
 group = mod_group_id
 version = mod_version
 
@@ -66,27 +65,21 @@ neoForge {
     }
 
     runs {
-        client {
-            client()
-            gameDirectory = file("run/client")
-            systemProperty "neoforge.enabledGameTestNamespaces", mod_id
-        }
-        server {
-            server()
-            gameDirectory = file("run/server")
-            programArgument "--nogui"
-            systemProperty "neoforge.enabledGameTestNamespaces", mod_id
-        }
-        gameTestServer {
-            type = "gameTestServer"
-            gameDirectory = file("run/gametest")
-            systemProperty "neoforge.enabledGameTestNamespaces", mod_id
-        }
-        data {
+        clientData {
             clientData()
             gameDirectory = file("run/data")
             programArguments.addAll(
-                    "--mod", mod_id,
+                    "--mod", mod_id as String,
+                    "--all",
+                    "--output", file("src/generated/resources").absolutePath,
+                    "--existing", file("src/main/resources").absolutePath
+            )
+        }
+        serverData {
+            serverData()
+            gameDirectory = file("run/data")
+            programArguments.addAll(
+                    "--mod", mod_id as String,
                     "--all",
                     "--output", file("src/generated/resources").absolutePath,
                     "--existing", file("src/main/resources").absolutePath
