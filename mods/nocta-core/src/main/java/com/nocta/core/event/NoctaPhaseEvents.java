@@ -73,6 +73,8 @@ public final class NoctaPhaseEvents {
 
         if (matches(crafted, "minecraft", "iron_pickaxe")) {
             reachPhase(player, Phase.IRON);
+        } else if (matches(crafted, "minecraft", "redstone_block")) {
+            reachPhase(player, Phase.MECHANISM);
         }
     }
 
@@ -82,8 +84,21 @@ public final class NoctaPhaseEvents {
         if (!(player instanceof ServerPlayer serverPlayer)) return;
 
         ItemStack stack = event.getOriginalStack();
+
         if (matches(stack, "nocta_ores", "raw_bronze")) {
             reachPhase(serverPlayer, Phase.BRONZE);
+        }
+        else if (matches(stack, "minecraft", "amethyst_shard")) {
+            reachPhase(serverPlayer, Phase.AETHER);
+        }
+        else if (matches(stack, "minecraft", "amethyst_block")) {
+            reachPhase(serverPlayer, Phase.RESONANCE);
+        }
+        else if (matches(stack, "minecraft", "netherite_ingot")) {
+            reachPhase(serverPlayer, Phase.VOIDFORGED);
+        }
+        else if (matches(stack, "minecraft", "nether_star")) {
+            reachPhase(serverPlayer, Phase.ETERNAL);
         }
     }
 }

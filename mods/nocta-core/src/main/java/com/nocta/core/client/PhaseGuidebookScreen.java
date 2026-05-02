@@ -4,9 +4,13 @@ import com.nocta.core.api.phase.Phase;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.network.chat.Component;
 
 public class PhaseGuidebookScreen extends Screen {
+    private final java.util.List<RowHit> rowHits = new java.util.ArrayList<>();
+
+    private record RowHit(Phase phase, int x, int y, int width, int height) {}
 
     public PhaseGuidebookScreen() {
         super(Component.translatable("screen.nocta_core.phase_guidebook"));
@@ -38,11 +42,13 @@ public class PhaseGuidebookScreen extends Screen {
         int listRight = this.width / 2 + 150;
         int listWidth = listRight - listLeft;
 
+        rowHits.clear();
         int y = 55;
         for (Phase phase : Phase.values()) {
             boolean unlocked = current.isAtLeast(phase);
             boolean isCurrent = phase == current;
             int rowHeight = renderPhaseRow(graphics, phase, listLeft, y, listWidth, unlocked, isCurrent);
+            rowHits.add(new RowHit(phase, listLeft, y, listWidth, rowHeight));
             y += rowHeight + 2;
         }
     }
@@ -81,6 +87,26 @@ public class PhaseGuidebookScreen extends Screen {
         }
 
         return height;
+    }
+
+    @Override
+    public boolean mouseClicked(MouseButtonEvent event, boolean doubleClick) {
+        if (event.button() == 0) {
+            double mouseX = event.x();
+            double mouseY = event.y();
+            for (RowHit hit : rowHits) {
+                if (mouseX >= hit.x && mouseX <= hit.x + hit.width &&
+                        mouseY >= hit.y && mouseY <= hit.y + hit.height) {
+                    openDetailPage(hit.phase);
+                    return true;
+                }
+            }
+        }
+        return super.mouseClicked(event, doubleClick);
+    }
+
+    private void openDetailPage(Phase phase) {
+        net.minecraft.client.Minecraft.getInstance().setScreen(new PhaseDetailScreen(phase, this));
     }
 
     @Override

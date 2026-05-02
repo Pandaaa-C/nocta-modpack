@@ -13,13 +13,10 @@ public final class NoctaCoreLangProvider extends LanguageProvider {
 
     @Override
     protected void addTranslations() {
-        // Creative tab
         add("itemGroup.nocta", "Nocta");
 
-        // Items
         add(NoctaItems.TEST_ITEM.get(), "Test Item");
 
-        // Phases
         add("phase.nocta.stone", "Stone Age");
         add("phase.nocta.stone.description", "The beginning of the journey. Master the basics of survival.");
         add("phase.nocta.bronze", "Bronze Age");
@@ -37,11 +34,26 @@ public final class NoctaCoreLangProvider extends LanguageProvider {
         add("phase.nocta.eternal", "Eternal");
         add("phase.nocta.eternal.description", "Beyond the end.");
 
-        // Placement modifier type (optional but tidy)
         add("placement_modifier_type.nocta_core.phase_gated", "Phase Gated");
 
         add(NoctaItems.PHASE_GUIDEBOOK.get(), "Phase Guidebook");
         add("screen.nocta_core.phase_guidebook", "Phase Guidebook");
         add("gui.nocta_core.guidebook.current", "Current era: %s");
+
+        add("milestone.nocta.bronze.smelt_copper", "Smelt your first copper ingot");
+        add("milestone.nocta.bronze.acquire_raw_bronze", "Acquire raw bronze");
+        add("milestone.nocta.iron.craft_iron_pickaxe", "Craft an iron pickaxe");
+        add("milestone.nocta.aether.acquire_amethyst", "Acquire an amethyst shard");
+        add("milestone.nocta.mechanism.craft_redstone_block", "Craft a block of redstone");
+        add("milestone.nocta.resonance.acquire_amethyst_block", "Acquire a block of amethyst");
+        add("milestone.nocta.voidforged.acquire_netherite", "Acquire a netherite ingot");
+        add("milestone.nocta.eternal.acquire_nether_star", "Acquire a nether star");
+
+        add("gui.nocta_core.guidebook.milestones", "Milestones");
+        add("gui.nocta_core.guidebook.unlocked", "Unlocked");
+        add("gui.nocta_core.guidebook.locked", "Locked");
+        add("gui.nocta_core.guidebook.back", "← Back");
+
+        add("screen.nocta_core.phase_detail", "Era: %s");
     }
 }

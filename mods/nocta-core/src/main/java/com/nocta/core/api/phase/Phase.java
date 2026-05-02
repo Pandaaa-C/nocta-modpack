@@ -84,4 +84,32 @@ public enum Phase implements StringRepresentable {
             case ETERNAL -> 0xFFFFD700;
         };
     }
+
+    public java.util.List<Milestone> milestones() {
+        return switch (this) {
+            case STONE -> java.util.List.of();
+            case BRONZE -> java.util.List.of(
+                    new Milestone("smelt_copper", "milestone.nocta.bronze.smelt_copper"),
+                    new Milestone("acquire_raw_bronze", "milestone.nocta.bronze.acquire_raw_bronze")
+            );
+            case IRON -> java.util.List.of(
+                    new Milestone("craft_iron_pickaxe", "milestone.nocta.iron.craft_iron_pickaxe")
+            );
+            case AETHER -> java.util.List.of(
+                    new Milestone("acquire_amethyst", "milestone.nocta.aether.acquire_amethyst")
+            );
+            case MECHANISM -> java.util.List.of(
+                    new Milestone("craft_redstone_block", "milestone.nocta.mechanism.craft_redstone_block")
+            );
+            case RESONANCE -> java.util.List.of(
+                    new Milestone("acquire_amethyst_block", "milestone.nocta.resonance.acquire_amethyst_block")
+            );
+            case VOIDFORGED -> java.util.List.of(
+                    new Milestone("acquire_netherite", "milestone.nocta.voidforged.acquire_netherite")
+            );
+            case ETERNAL -> java.util.List.of(
+                    new Milestone("acquire_nether_star", "milestone.nocta.eternal.acquire_nether_star")
+            );
+        };
+    }
 }
