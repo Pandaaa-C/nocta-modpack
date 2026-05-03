@@ -17,7 +17,11 @@ public final class NoctaOresBlockTagsProvider extends BlockTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        tag(BlockTags.MINEABLE_WITH_PICKAXE).add(NoctaOreBlocks.BRONZE_ORE.get());
-        tag(BlockTags.NEEDS_STONE_TOOL).add(NoctaOreBlocks.BRONZE_ORE.get());
+        tag(BlockTags.MINEABLE_WITH_PICKAXE)
+                .add(NoctaOreBlocks.BRONZE_ORE.get())
+                .add(NoctaOreBlocks.TIN_ORE.get());
+        tag(BlockTags.NEEDS_STONE_TOOL)
+                .add(NoctaOreBlocks.BRONZE_ORE.get())
+                .add(NoctaOreBlocks.TIN_ORE.get());
     }
 }

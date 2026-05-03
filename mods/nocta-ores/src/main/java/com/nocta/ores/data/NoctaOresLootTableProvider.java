@@ -28,6 +28,8 @@ public final class NoctaOresLootTableProvider {
         protected void generate() {
             add(NoctaOreBlocks.BRONZE_ORE.get(),
                     block -> createOreDrop(block, NoctaOreItems.RAW_BRONZE.get()));
+            add(NoctaOreBlocks.TIN_ORE.get(),
+                    block -> createOreDrop(block, NoctaOreItems.RAW_TIN.get()));
         }
 
         @Override

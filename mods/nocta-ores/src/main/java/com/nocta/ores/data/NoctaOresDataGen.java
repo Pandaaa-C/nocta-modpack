@@ -21,12 +21,13 @@ public final class NoctaOresDataGen {
         PackOutput output = event.getGenerator().getPackOutput();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
-        // Client-side providers
         event.addProvider(new NoctaOresModelProvider(output));
         event.addProvider(new NoctaOresLangProvider(output));
 
         event.addProvider(new NoctaOresBlockTagsProvider(output, lookupProvider));
         event.addProvider(new LootTableProvider(
                 output, Set.of(), NoctaOresLootTableProvider.SUB_PROVIDERS, lookupProvider));
+
+        event.addProvider(new NoctaOresRecipeProvider.Runner(output, lookupProvider));
     }
 }

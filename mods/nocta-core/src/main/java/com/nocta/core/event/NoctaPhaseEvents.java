@@ -60,10 +60,6 @@ public final class NoctaPhaseEvents {
     public static void onItemSmelted(PlayerEvent.ItemSmeltedEvent event) {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
         ItemStack smelted = event.getSmelting();
-
-        if (matches(smelted, "minecraft", "copper_ingot")) {
-            reachPhase(player, Phase.BRONZE);
-        }
     }
 
     @SubscribeEvent
@@ -71,7 +67,9 @@ public final class NoctaPhaseEvents {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
         ItemStack crafted = event.getCrafting();
 
-        if (matches(crafted, "minecraft", "iron_pickaxe")) {
+        if (matches(crafted, "nocta_ores", "bronze_ingot")) {
+            reachPhase(player, Phase.BRONZE);
+        } else if (matches(crafted, "minecraft", "iron_pickaxe")) {
             reachPhase(player, Phase.IRON);
         } else if (matches(crafted, "minecraft", "redstone_block")) {
             reachPhase(player, Phase.MECHANISM);

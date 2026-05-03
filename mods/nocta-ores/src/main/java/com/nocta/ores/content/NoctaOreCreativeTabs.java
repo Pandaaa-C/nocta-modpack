@@ -20,7 +20,11 @@ public final class NoctaOreCreativeTabs {
                     .icon(() -> new ItemStack(NoctaOreItems.RAW_BRONZE.get()))
                     .displayItems((params, output) -> {
                         output.accept(NoctaOreBlocks.BRONZE_ORE.get());
+                        output.accept(NoctaOreBlocks.TIN_ORE.get());
                         output.accept(NoctaOreItems.RAW_BRONZE.get());
+                        output.accept(NoctaOreItems.RAW_TIN.get());
+                        output.accept(NoctaOreItems.TIN_INGOT.get());
+                        output.accept(NoctaOreItems.BRONZE_INGOT.get());
                     })
                     .build());
 

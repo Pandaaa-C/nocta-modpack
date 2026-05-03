@@ -18,6 +18,17 @@ public final class NoctaOreBlocks{
             )
     );
 
+    public static final DeferredBlock<DropExperienceBlock> TIN_ORE = NoctaOresRegistries.ORES.blockWithItem(
+            "tin_ore",
+            props -> new DropExperienceBlock(
+                    UniformInt.of(0, 2),
+                    props.mapColor(MapColor.STONE)
+                            .strength(3.0F, 3.0F)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.STONE)
+            )
+    );
+
     public static void init() {
         // Touch this class to trigger static init.
     }

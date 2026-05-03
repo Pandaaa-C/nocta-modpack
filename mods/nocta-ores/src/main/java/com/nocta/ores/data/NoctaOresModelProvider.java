@@ -17,7 +17,11 @@ public final class NoctaOresModelProvider extends ModelProvider {
     @Override
     protected void registerModels(BlockModelGenerators blockModels, ItemModelGenerators itemModels) {
         blockModels.createTrivialCube(NoctaOreBlocks.BRONZE_ORE.get());
+        blockModels.createTrivialCube(NoctaOreBlocks.TIN_ORE.get());
 
         itemModels.generateFlatItem(NoctaOreItems.RAW_BRONZE.get(), net.minecraft.client.data.models.model.ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(NoctaOreItems.RAW_TIN.get(), net.minecraft.client.data.models.model.ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(NoctaOreItems.TIN_INGOT.get(), net.minecraft.client.data.models.model.ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(NoctaOreItems.BRONZE_INGOT.get(), net.minecraft.client.data.models.model.ModelTemplates.FLAT_ITEM);
     }
 }

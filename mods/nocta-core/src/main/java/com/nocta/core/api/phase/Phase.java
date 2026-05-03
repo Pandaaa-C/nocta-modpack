@@ -89,7 +89,7 @@ public enum Phase implements StringRepresentable {
         return switch (this) {
             case STONE -> java.util.List.of();
             case BRONZE -> java.util.List.of(
-                    new Milestone("smelt_copper", "milestone.nocta.bronze.smelt_copper"),
+                    new Milestone("craft_bronze_ingot", "milestone.nocta.bronze.craft_bronze_ingot"),
                     new Milestone("acquire_raw_bronze", "milestone.nocta.bronze.acquire_raw_bronze")
             );
             case IRON -> java.util.List.of(

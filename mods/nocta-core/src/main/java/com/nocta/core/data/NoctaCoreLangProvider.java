@@ -55,5 +55,7 @@ public final class NoctaCoreLangProvider extends LanguageProvider {
         add("gui.nocta_core.guidebook.back", "← Back");
 
         add("screen.nocta_core.phase_detail", "Era: %s");
+
+        add("milestone.nocta.bronze.craft_bronze_ingot", "Craft a bronze ingot");
     }
 }

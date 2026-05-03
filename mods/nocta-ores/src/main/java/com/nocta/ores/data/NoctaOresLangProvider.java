@@ -16,6 +16,10 @@ public final class NoctaOresLangProvider extends LanguageProvider {
     protected void addTranslations() {
         add("itemGroup.nocta_ores", "Nocta Ores");
         add(NoctaOreBlocks.BRONZE_ORE.get(), "Bronze Ore");
+        add(NoctaOreBlocks.TIN_ORE.get(), "Tin Ore");
         add(NoctaOreItems.RAW_BRONZE.get(), "Raw Bronze");
+        add(NoctaOreItems.RAW_TIN.get(), "Raw Tin");
+        add(NoctaOreItems.TIN_INGOT.get(), "Tin Ingot");
+        add(NoctaOreItems.BRONZE_INGOT.get(), "Bronze Ingot");
     }
 }
